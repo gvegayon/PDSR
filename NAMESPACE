@@ -1,0 +1,8 @@
+importFrom(RCurl)
+importFrom(plyr)
+
+export(getColnames, parseLbl, rmQuotes, trimString)
+
+# Methods
+S3method(print, PDSR)
+S3method(summary, PDSR)

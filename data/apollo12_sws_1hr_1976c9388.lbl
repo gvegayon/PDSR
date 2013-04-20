@@ -1,0 +1,685 @@
+PDS_VERSION_ID               = PDS3                                           
+RECORD_TYPE                  = "FIXED_LENGTH"                                 
+RECORD_BYTES                 = 392                                            
+FILE_RECORDS                 = 1159                                           
+^HEADER                      = "APOLLO12_SWS_1HR_1976C9388.TAB"               
+^TABLE                       = ("APOLLO12_SWS_1HR_1976C9388.TAB",3)           
+                                                                              
+MISSION_NAME                 = "APOLLO 12"                                    
+INSTRUMENT_HOST_ID           = "A12A"                                         
+INSTRUMENT_HOST_NAME         = "APOLLO 12 LUNAR SURFACE EXPERIMENTS PACKAGE"  
+INSTRUMENT_ID                = "SWS"                                          
+INSTRUMENT_NAME              = "SOLAR WIND SPECTROMETER"                      
+                                                                              
+DATA_SET_ID                  = "A12A-L-SWS-4-SOLAR-WIND-1HR-AVG-V1.0"         
+PRODUCT_ID                   = "APOLLO12_SWS_1HR_1976C9388"                   
+PRODUCT_CREATION_TIME        = 2007-04-23T14:04:28                            
+                                                                              
+SPACECRAFT_CLOCK_START_COUNT = "N/A"                                          
+SPACECRAFT_CLOCK_STOP_COUNT  = "N/A"                                          
+START_TIME                   = 1976-01-10T00:30:00                            
+STOP_TIME                    = 1976-03-25T08:30:00                            
+TARGET_NAME                  = "MOON"                                         
+                                                                              
+OBJECT                       = HEADER                                         
+  BYTES                      = 784                                            
+  RECORDS                    = 2                                              
+  HEADER_TYPE                = COLUMN_LABEL                                   
+  INTERCHANGE_FORMAT         = ASCII                                          
+  DESCRIPTION                = "Column header records"                        
+END_OBJECT                   = HEADER                                         
+                                                                              
+OBJECT                       = TABLE                                          
+  INTERCHANGE_FORMAT         = ASCII                                          
+  ROWS                       = 1157                                           
+  COLUMNS                    = 54                                             
+  ROW_BYTES                  = 392                                            
+  INDEX_TYPE                 = SINGLE                                         
+  DESCRIPTION                = "This is the hourly-averaged data from the     
+     Apollo 12 Solar Wind  Spectrometer instrument, reformatted by NSSDC for  
+     easier access and use."                                                  
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 1                                              
+    NAME                     = "EPOCH"                                        
+    DESCRIPTION              = "Universal Time"                               
+    DATA_TYPE                = "TIME"                                         
+    FORMAT                   = "A19"                                          
+    START_BYTE               = 1                                              
+    BYTES                    = 19                                             
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 2                                              
+    NAME                     = "JULIAN_DATE"                                  
+    DESCRIPTION              = "Julian date for the universal time in         
+      column 1"                                                               
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F13.5"                                        
+    START_BYTE               = 22                                             
+    BYTES                    = 13                                             
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 3                                              
+    NAME                     = "NSPECTRA_1"                                   
+    DESCRIPTION              = "No. of spectra in set 1"                      
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I3"                                           
+    MISSING_CONSTANT         = -99                                            
+    START_BYTE               = 37                                             
+    BYTES                    = 3                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 4                                              
+    NAME                     = "DENSITY_1"                                    
+    DESCRIPTION              = "Hour-Average Proton Density 1"                
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "/cm**3"                                       
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 42                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 5                                              
+    NAME                     = "AP_RATIO_1"                                   
+    DESCRIPTION              = "Alpha to Proton Ratio 1"                      
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.2"                                         
+    MISSING_CONSTANT         = -9.99                                          
+    START_BYTE               = 49                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 6                                              
+    NAME                     = "VEL_1"                                        
+    DESCRIPTION              = "Hour-Average Proton Bulk Speed 1"             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 56                                             
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 7                                              
+    NAME                     = "VTH_1"                                        
+    DESCRIPTION              = "Hour-Average Thermal Velocity 1"              
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -99.0                                          
+    START_BYTE               = 64                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 8                                              
+    NAME                     = "EAST_1"                                       
+    DESCRIPTION              = "Angle of flow toward ecliptic east 1, in solar
+      ecliptic coordinates"                                                   
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 71                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 9                                              
+    NAME                     = "NORTH_1"                                      
+    DESCRIPTION              = "Angle of flow toward ecliptic north 1, in     
+      solar ecliptic coordinates"                                             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 78                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 10                                             
+    NAME                     = "DENSITY_DEV_1"                                
+    DESCRIPTION              = "RMS Deviation of Proton Density 1"            
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "/cm**3"                                       
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 85                                             
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 11                                             
+    NAME                     = "AP_RATIO_DEV_1"                               
+    DESCRIPTION              = "RMS Deviation of Alpha-Proton Ratio 1"        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.2"                                         
+    MISSING_CONSTANT         = -9.99                                          
+    START_BYTE               = 91                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 12                                             
+    NAME                     = "VEL_DEV_1"                                    
+    DESCRIPTION              = "RMS Deviation of Avg Proton Bulk Speed 1"     
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 98                                             
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 13                                             
+    NAME                     = "VTH_DEV_1"                                    
+    DESCRIPTION              = "RMS Deviation of Average Thermal Velocity 1"  
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 106                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 14                                             
+    NAME                     = "EAST_DEV_1"                                   
+    DESCRIPTION              = "RMS Deviation of Angle Toward East 1"         
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 114                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 15                                             
+    NAME                     = "NORTH_DEV_1"                                  
+    DESCRIPTION              = "RMS Deviation of Angle Toward North 1"        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 120                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 16                                             
+    NAME                     = "NSPECTRA_2"                                   
+    DESCRIPTION              = "No. of spectra in set 2"                      
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I3"                                           
+    MISSING_CONSTANT         = -99                                            
+    START_BYTE               = 126                                            
+    BYTES                    = 3                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 17                                             
+    NAME                     = "DENSITY_2"                                    
+    DESCRIPTION              = "Hour-Average Proton Density 2"                
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "/cm**3"                                       
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 131                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 18                                             
+    NAME                     = "AP_RATIO_2"                                   
+    DESCRIPTION              = "Alpha to Proton Ratio 2"                      
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.2"                                         
+    MISSING_CONSTANT         = -9.99                                          
+    START_BYTE               = 138                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 19                                             
+    NAME                     = "VEL_2"                                        
+    DESCRIPTION              = "Hour-Average Proton Bulk Speed 2"             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 145                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 20                                             
+    NAME                     = "VTH_2"                                        
+    DESCRIPTION              = "Hour-Average Thermal Velocity 2"              
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -99.0                                          
+    START_BYTE               = 153                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 21                                             
+    NAME                     = "EAST_2"                                       
+    DESCRIPTION              = "Angle of flow toward ecliptic east 2, in solar
+      ecliptic coordinates"                                                   
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 160                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 22                                             
+    NAME                     = "NORTH_2"                                      
+    DESCRIPTION              = "Angle of flow toward ecliptic north 2, in     
+      solar ecliptic coordinates"                                             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 167                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 23                                             
+    NAME                     = "DENSITY_DEV_2"                                
+    DESCRIPTION              = "RMS Deviation of Proton Density 2"            
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "/cm**3"                                       
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 174                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 24                                             
+    NAME                     = "AP_RATIO_DEV_2"                               
+    DESCRIPTION              = "RMS Deviation of Alpha-Proton Ratio 2"        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.2"                                         
+    MISSING_CONSTANT         = -9.99                                          
+    START_BYTE               = 180                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 25                                             
+    NAME                     = "VEL_DEV_2"                                    
+    DESCRIPTION              = "RMS Deviation of Avg Proton Bulk Speed 2"     
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 187                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 26                                             
+    NAME                     = "VTH_DEV_2"                                    
+    DESCRIPTION              = "RMS Deviation of Average Thermal Velocity 2"  
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 195                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 27                                             
+    NAME                     = "EAST_DEV_2"                                   
+    DESCRIPTION              = "RMS Deviation of Angle Toward East 2"         
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 203                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 28                                             
+    NAME                     = "NORTH_DEV_2"                                  
+    DESCRIPTION              = "RMS Deviation of Angle Toward North 2"        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 209                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 29                                             
+    NAME                     = "NSPECTRA_3"                                   
+    DESCRIPTION              = "No. of spectra in set 3"                      
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I3"                                           
+    MISSING_CONSTANT         = -99                                            
+    START_BYTE               = 215                                            
+    BYTES                    = 3                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 30                                             
+    NAME                     = "DENSITY_3"                                    
+    DESCRIPTION              = "Hour-Average Proton Density 3"                
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "/cm**3"                                       
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 220                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 31                                             
+    NAME                     = "AP_RATIO_3"                                   
+    DESCRIPTION              = "Alpha to Proton Ratio 3"                      
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.2"                                         
+    MISSING_CONSTANT         = -9.99                                          
+    START_BYTE               = 227                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 32                                             
+    NAME                     = "VEL_3"                                        
+    DESCRIPTION              = "Hour-Average Proton Bulk Speed 3"             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 234                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 33                                             
+    NAME                     = "VTH_3"                                        
+    DESCRIPTION              = "Hour-Average Thermal Velocity 3"              
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -99.0                                          
+    START_BYTE               = 242                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 34                                             
+    NAME                     = "EAST_3"                                       
+    DESCRIPTION              = "Angle of flow toward ecliptic east 3, in solar
+      ecliptic coordinates"                                                   
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 249                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 35                                             
+    NAME                     = "NORTH_3"                                      
+    DESCRIPTION              = "Angle of flow toward ecliptic north 3, in     
+      solar ecliptic coordinates"                                             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 256                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 36                                             
+    NAME                     = "DENSITY_DEV_3"                                
+    DESCRIPTION              = "RMS Deviation of Proton Density 3"            
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "/cm**3"                                       
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 263                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 37                                             
+    NAME                     = "AP_RATIO_DEV_3"                               
+    DESCRIPTION              = "RMS Deviation of Alpha-Proton Ratio 3"        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.2"                                         
+    MISSING_CONSTANT         = -9.99                                          
+    START_BYTE               = 269                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 38                                             
+    NAME                     = "VEL_DEV_3"                                    
+    DESCRIPTION              = "RMS Deviation of Avg Proton Bulk Speed 3"     
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 276                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 39                                             
+    NAME                     = "VTH_DEV_3"                                    
+    DESCRIPTION              = "RMS Deviation of Average Thermal Velocity 3"  
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 284                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 40                                             
+    NAME                     = "EAST_DEV_3"                                   
+    DESCRIPTION              = "RMS Deviation of Angle Toward East 3"         
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 292                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 41                                             
+    NAME                     = "NORTH_DEV_3"                                  
+    DESCRIPTION              = "RMS Deviation of Angle Toward North 3"        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 298                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 42                                             
+    NAME                     = "NSPECTRA_4"                                   
+    DESCRIPTION              = "No. of spectra in set 4"                      
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I3"                                           
+    MISSING_CONSTANT         = -99                                            
+    START_BYTE               = 304                                            
+    BYTES                    = 3                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 43                                             
+    NAME                     = "DENSITY_4"                                    
+    DESCRIPTION              = "Hour-Average Proton Density 4"                
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "/cm**3"                                       
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 309                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 44                                             
+    NAME                     = "AP_RATIO_4"                                   
+    DESCRIPTION              = "Alpha to Proton Ratio 4"                      
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.2"                                         
+    MISSING_CONSTANT         = -9.99                                          
+    START_BYTE               = 316                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 45                                             
+    NAME                     = "VEL_4"                                        
+    DESCRIPTION              = "Hour-Average Proton Bulk Speed 4"             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 323                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 46                                             
+    NAME                     = "VTH_4"                                        
+    DESCRIPTION              = "Hour-Average Thermal Velocity 4"              
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -99.0                                          
+    START_BYTE               = 331                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 47                                             
+    NAME                     = "EAST_4"                                       
+    DESCRIPTION              = "Angle of flow toward ecliptic east 4, in solar
+      ecliptic coordinates"                                                   
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 338                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 48                                             
+    NAME                     = "NORTH_4"                                      
+    DESCRIPTION              = "Angle of flow toward ecliptic north 4, in     
+      solar ecliptic coordinates"                                             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 345                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 49                                             
+    NAME                     = "DENSITY_DEV_4"                                
+    DESCRIPTION              = "RMS Deviation of Proton Density 4"            
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "/cm**3"                                       
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 352                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 50                                             
+    NAME                     = "AP_RATIO_DEV_4"                               
+    DESCRIPTION              = "RMS Deviation of Alpha-Proton Ratio 4"        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.2"                                         
+    MISSING_CONSTANT         = -9.99                                          
+    START_BYTE               = 358                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 51                                             
+    NAME                     = "VEL_DEV_4"                                    
+    DESCRIPTION              = "RMS Deviation of Avg Proton Bulk Speed 4"     
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 365                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 52                                             
+    NAME                     = "VTH_DEV_4"                                    
+    DESCRIPTION              = "RMS Deviation of Average Thermal Velocity 4"  
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999.0                                         
+    START_BYTE               = 373                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 53                                             
+    NAME                     = "EAST_DEV_4"                                   
+    DESCRIPTION              = "RMS Deviation of Angle Toward East 4"         
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 381                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 54                                             
+    NAME                     = "NORTH_DEV_4"                                  
+    DESCRIPTION              = "RMS Deviation of Angle Toward North 4"        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -9.9                                           
+    START_BYTE               = 387                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+END_OBJECT                   = TABLE                                          
+                                                                              
+END                                                                           

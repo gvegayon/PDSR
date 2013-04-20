@@ -1,8 +1,21 @@
-rm(list=ls())
-
-# PARSELINE:
+# parseLine
+# description:
 # Gets the value and name of a property
-parseLine <- function(x,lvl=0) {
+trimString <- function(x) {
+  return(gsub("(^\\s+|\\s+$)", "", x))
+}
+
+# rmQuotes
+# description: 
+# Removes leading/ending quotes
+rmQuotes <- function(x) {
+  return(gsub("(^\\\"|\\\"$)", "", x))
+}
+
+# parseLine
+# description:
+# Gets the value and name of a property
+parseLine <- function(x) {
   
   # Matching Line label
   pattern <- "(\\^?[A-Z_]+)+[\\t ]*[=](.*)*"
@@ -11,19 +24,27 @@ parseLine <- function(x,lvl=0) {
   # If it matches
   if (m[[1]][1] > 0) {
     x <- regmatches(x, m)
-    output <- as.list(gsub("(^[\\t ]*|[\\t ]*$)", "",x[[1]][3]))
+    output <- as.list(rmQuotes(trimString(x[[1]][3])))
     names(output) <- x[[1]][[2]]
     return(output)
   } # Else
   else return(NULL)
 }
 
+# parseLbl
 # Recursive nesting and parsing
 parseLbl <- function(x) {
+  
+  # Trim lines
+  x <- sapply(x, trimString)
+  
+  # Removes comments
+  x <- sapply(x, gsub, patter="/\\*.*", replace="")
   
   # REGEX patterns
   strobj <- "^[\\t ]*OBJECT"
   endobj <- "^[\\t ]*END\\_OBJECT"
+  fulline <- "(\\^?[A-Z_]+)+[\\t ]*[=](.*)+"
   
   nlines <- length(x)
   lbls <- NULL
@@ -43,7 +64,7 @@ parseLbl <- function(x) {
         nobject <- nobject + grepl(strobj, x[i2]) - grepl(endobj, x[i2])
       }
       
-      # Adding subelement
+      # Adding subelement 
       lbls[[length(lbls)+1]] <- parseLbl(x[(i+1):(i2-1)])
       names(lbls)[[length(lbls)]] <- parseLine(x[i])[[1]]
       
@@ -51,10 +72,26 @@ parseLbl <- function(x) {
       curline <- x[i]
       
       next
+    } # If its a continuation of the previous line
+    else if (!grepl(fulline, curline) & nchar(curline) > 0) {
+      
+      # Loop while not finding a new label
+      while (!grepl(fulline, curline) & i < nlines) {
+        
+        lbls[length(lbls)] <- paste(lbls[length(lbls)], trimString(curline))
+        i <- i + 1
+        curline <- x[i]
+      }
+      
+      # Remove border quotes
+      lbls[length(lbls)] <- rmQuotes(lbls[length(lbls)])
+      next
     }
     
     # Normal case
-    else lbls <- c(lbls, parseLine(curline))
+    else {
+      lbls <- c(lbls, parseLine(curline))
+    }
     
     # Next
     i <- i + 1
@@ -63,21 +100,32 @@ parseLbl <- function(x) {
   return(lbls)
 }
 
-
-# Example 1 
-# Removing white lines
-lbls.txt <- readLines("data/apollo12_sws_28s_19760325.lbl.txt")
-lbls.txt <- lbls.txt[grepl("[a-zA-Z0-9_]", lbls.txt)]
-x <- parseLbl(lbls.txt)
-
-# Example 2
-# Removing white lines
-lbls.txt <- readLines("data/apollo12_sws_28s_19760318.lbl.txt")
-lbls.txt <- lbls.txt[grepl("[a-zA-Z0-9_]", lbls.txt)]
-y <- parseLbl(lbls.txt)
-
-# Example 3
-# Removing white lines
-lbls.txt <- readLines("data/lcross_mir1_raw_20090620025221236.lbl.txt")
-lbls.txt <- lbls.txt[grepl("[a-zA-Z0-9_]", lbls.txt)]
-z <- parseLbl(lbls.txt)
+getColnames <- function(x) {
+  if(any(grepl("^\\^TABLE$", names(x)))) {
+    # Extract lists of tables
+    tabs <- x[grepl("^TABLE$", names(x))]
+    
+    # Building list of tables
+    output <- NULL
+    for (i in 1:length(tabs)) {
+      # Getting tabnames
+      tabsnames <- x[grepl("^\\^HEADER$", names(x))]
+      
+      # Building list 
+      cols <- tabs[[i]][grepl("^COLUMN$", names(tabs[[i]]))]
+      suboutput <- NULL
+      for (j in 1:length(cols)) {
+        # Adding colname to list
+        suboutput <- c(suboutput, cols[[j]][["NAME"]])
+      }
+      # Adding table colnames to table list
+      output[[length(output) + 1]] <- suboutput
+      names(output)[length(output)] <- tabsnames[[i]]
+    }
+    return(output)
+  }
+  else {
+    message("x does not contains tables")
+    return(NULL)
+  }
+}
