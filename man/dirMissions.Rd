@@ -8,12 +8,11 @@ Reaches colnames of every table within a PDS object
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-dirMissions(keywords=NULL, updateit=FALSE, silent=FALSE)
+dirMissions(keywords=NULL, missions=NULL)
 }
 \arguments{
   \item{keywords}{A PDSR class object}
-  \item{updateit}{A PDSR class object}
-  \item{silent}{A PDSR class object}
+  \item{missions}{A PDSR class object}
 }
 \details{
 this and that

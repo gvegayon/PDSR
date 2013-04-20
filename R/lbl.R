@@ -102,6 +102,10 @@ parseLbl <- function(x) {
 
 getColnames <- function(x) {
   if(any(grepl("^\\^TABLE$", names(x)))) {
+    
+    oldpar <- options("stringsAsFactors")
+    options(stringsAsFactors=FALSE)
+    
     # Extract lists of tables
     tabs <- x[grepl("^TABLE$", names(x))]
     
@@ -116,47 +120,35 @@ getColnames <- function(x) {
       suboutput <- NULL
       for (j in 1:length(cols)) {
         # Adding colname to list
-        suboutput <- c(suboutput, cols[[j]][["NAME"]])
+        if (j==1) suboutput <- cbind(
+          NAME=cols[[j]][["NAME"]],
+          DESCRIPTION=cols[[j]][["DESCRIPTION"]],
+          DATA_TYPE=cols[[j]][["DATA_TYPE"]],
+          FORMAT=cols[[j]][["FORMAT"]]
+        )
+        else {
+          suboutput <- rbind(
+            suboutput, 
+            cbind(
+              NAME=cols[[j]][["NAME"]],
+              DESCRIPTION=cols[[j]][["DESCRIPTION"]],
+              DATA_TYPE=cols[[j]][["DATA_TYPE"]],
+              FORMAT=cols[[j]][["FORMAT"]]
+              )
+            )
+        }
       }
       # Adding table colnames to table list
-      output[[length(output) + 1]] <- suboutput
+      output[[length(output) + 1]] <- as.data.frame(suboutput)
       names(output)[length(output)] <- tabsnames[[i]]
     }
+    
+    options(strinsAsFactors=oldpar)
+    
     return(output)
   }
   else {
     message("x does not contains tables")
     return(NULL)
   }
-}
-
-# getMissions
-# description:
-# Returs a dataframe of the existing missions that suit a keyword
-dirMissions <- function(keywords=NULL, updateit=FALSE, silent=FALSE) {
-  
-  # First checks if .mission DF already exists
-  if (!exists(".missions", envir=.GlobalEnv) | !updateit) {
-    if (!silent) warning("Object \'.missions\' already exists")
-  }
-  else { # Downloading data
-    
-    message("Conecting to http://pds.jpl.nasa.gov/tools/dsstatus/")
-    pdestatusuri <- "http://pds.jpl.nasa.gov/tools/dsstatus/dsidStatus.jsp?sortOpt1=di.dsid&sortOpt2=&sortOpt3=&sortOpt4=&sortOpt5=&nodename=ALL&col2=dm.msnname&col3=&col4=&col5=&Go=Submit"
-    assign(.missions,try(readHTMLTable(pdestatusuri, header=TRUE)[[3]]))
-    
-    if (class(.missions) == "try-error") stop("Connection failed.")
-  }
-  
-  if (length(keywords)==0) return(.missions)
-  else {
-    # Unlisting
-    keywords <- unlist(keywords, recursive=TRUE)
-    if (length(keywords)==0) return(.missions)
-    
-    # Building regex
-    if (length(keywords)>1) keywords <- paste(keywords, sep="|")
-    
-    return(.missions[grepl(keywords, .missions[,2]),])
-  }  
 }
