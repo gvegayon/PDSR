@@ -1,0 +1,302 @@
+PDS_VERSION_ID               = PDS3                                           
+RECORD_TYPE                  = "FIXED_LENGTH"                                 
+RECORD_BYTES                 = 160                                            
+FILE_RECORDS                 = 825                                            
+^HEADER                      = "APOLLO12_SWS_28S_19760325.TAB"                
+^TABLE                       = ("APOLLO12_SWS_28S_19760325.TAB",3)            
+                                                                              
+MISSION_NAME                 = "APOLLO 12"                                    
+INSTRUMENT_HOST_ID           = "A12A"                                         
+INSTRUMENT_HOST_NAME         = "APOLLO 12 LUNAR SURFACE EXPERIMENTS PACKAGE"  
+INSTRUMENT_ID                = "SWS"                                          
+INSTRUMENT_NAME              = "SOLAR WIND SPECTROMETER"                      
+                                                                              
+DATA_SET_ID                  = "A12A-L-SWS-3-SOLAR-WIND-28S-RES-V1.0"         
+PRODUCT_ID                   = "APOLLO12_SWS_28S_19760325"                    
+PRODUCT_CREATION_TIME        = 2007-06-11T14:14:35                            
+                                                                              
+SPACECRAFT_CLOCK_START_COUNT = "N/A"                                          
+SPACECRAFT_CLOCK_STOP_COUNT  = "N/A"                                          
+START_TIME                   = 1976-03-25T00:00:18                            
+STOP_TIME                    = 1976-03-25T08:35:57                            
+TARGET_NAME                  = "MOON"                                         
+                                                                              
+OBJECT                       = HEADER                                         
+  BYTES                      = 320                                            
+  RECORDS                    = 2                                              
+  HEADER_TYPE                = COLUMN_LABEL                                   
+  INTERCHANGE_FORMAT         = ASCII                                          
+  DESCRIPTION                = "Column header records"                        
+END_OBJECT                   = HEADER                                         
+                                                                              
+OBJECT                       = TABLE                                          
+  INTERCHANGE_FORMAT         = ASCII                                          
+  ROWS                       = 823                                            
+  COLUMNS                    = 21                                             
+  ROW_BYTES                  = 160                                            
+  INDEX_TYPE                 = SINGLE                                         
+  DESCRIPTION                = "This 28-s data set is the highest resolution  
+      data set available from the  Apollo 12 Solar Wind Spectrometer          
+      instrument, and was reformatted by NSSDC for  easier access and use.    
+      During the lunar night there is no solar wind signal so there are data  
+      gaps of about 15 days each lunation."                                   
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 1                                              
+    NAME                     = "EPOCH"                                        
+    DESCRIPTION              = "Universal Time"                               
+    DATA_TYPE                = "TIME"                                         
+    FORMAT                   = "A19"                                          
+    START_BYTE               = 1                                              
+    BYTES                    = 19                                             
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 2                                              
+    NAME                     = "JULIAN_DATE"                                  
+    DESCRIPTION              = "Julian date for the universal time in         
+      column 1"                                                               
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F13.5"                                        
+    START_BYTE               = 22                                             
+    BYTES                    = 13                                             
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 3                                              
+    NAME                     = "DENSITY"                                      
+    DESCRIPTION              = "Proton Density"                               
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "protons/cm**3"                                
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 37                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 4                                              
+    NAME                     = "AP_RATIO"                                     
+    DESCRIPTION              = "Alpha to Proton Ratio"                        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.2"                                         
+    MISSING_CONSTANT         = -9.99                                          
+    START_BYTE               = 44                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 5                                              
+    NAME                     = "VEL"                                          
+    DESCRIPTION              = "Proton Bulk Speed"                            
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I4"                                           
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -999                                           
+    START_BYTE               = 51                                             
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 6                                              
+    NAME                     = "VTH"                                          
+    DESCRIPTION              = "Proton Thermal Velocity"                      
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I3"                                           
+    UNIT                     = "km/s"                                         
+    MISSING_CONSTANT         = -99                                            
+    START_BYTE               = 57                                             
+    BYTES                    = 3                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 7                                              
+    NAME                     = "EAST"                                         
+    DESCRIPTION              = "Proton Flow Angle toward East in Solar        
+      Ecliptic Coordinates"                                                   
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 62                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 8                                              
+    NAME                     = "NORTH"                                        
+    DESCRIPTION              = "Proton Flow Angle toward North in Solar       
+      Ecliptic Coordinates"                                                   
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "deg"                                          
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 69                                             
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 9                                              
+    NAME                     = "FLAG"                                         
+    DESCRIPTION              = "FLAG Word bits not separately shown; packed in
+      low order bits; See NOTE."                                              
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I10"                                          
+    NOTE                     = "These FLAG Bits of no interest to user; kept  
+      as record of original."                                                 
+    MISSING_CONSTANT         = 1111111111                                     
+    START_BYTE               = 76                                             
+    BYTES                    = 10                                             
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 10                                             
+    NAME                     = "IA"                                           
+    DESCRIPTION              = "Flag for how angle alpha was derived.  See    
+      NOTE."                                                                  
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I1"                                           
+    NOTE                     = "If IA = 0, alpha is measured; = 1, alpha is   
+      assumed; = 2, alpha is limited; = 3, cup seeing protons is too far from 
+      sun direction to be plausible."                                         
+    MISSING_CONSTANT         = 9                                              
+    START_BYTE               = 88                                             
+    BYTES                    = 1                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 11                                             
+    NAME                     = "IB"                                           
+    DESCRIPTION              = "Flag for how angle beta was derived. See      
+      NOTE."                                                                  
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I2"                                           
+    NOTE                     = "If IB = 0, beta is measured; = 1, beta is     
+      assumed; = 2, beta is limited; = 3, cup seeing protons is too far from  
+      sun direction to be plausible."                                         
+    MISSING_CONSTANT         = 9                                              
+    START_BYTE               = 91                                             
+    BYTES                    = 2                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 12                                             
+    NAME                     = "IDISCP"                                       
+    DESCRIPTION              = "1 means that side cup not next to cup A has   
+      more current than cups B or C"                                          
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I2"                                           
+    MISSING_CONSTANT         = 9                                              
+    START_BYTE               = 95                                             
+    BYTES                    = 2                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 13                                             
+    NAME                     = "GAIN"                                         
+    DESCRIPTION              = "Gain Level: 0 = Low; 1 = High"                
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I2"                                           
+    MISSING_CONSTANT         = 9                                              
+    START_BYTE               = 99                                             
+    BYTES                    = 2                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 14                                             
+    NAME                     = "RMS"                                          
+    DESCRIPTION              = "Percentage Error in Fitting Program"          
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F5.1"                                         
+    UNIT                     = "percent"                                      
+    MISSING_CONSTANT         = -99.9                                          
+    START_BYTE               = 103                                            
+    BYTES                    = 5                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 15                                             
+    NAME                     = "KUPA"                                         
+    DESCRIPTION              = "Number of side cup (not vertical) with most   
+      current"                                                                
+    DATA_TYPE                = "ASCII_INTEGER"                                
+    FORMAT                   = "I2"                                           
+    MISSING_CONSTANT         = 9                                              
+    START_BYTE               = 110                                            
+    BYTES                    = 2                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 16                                             
+    NAME                     = "CURA"                                         
+    DESCRIPTION              = "Current in Cup A (shown by KUPA)"             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "picoamps"                                     
+    MISSING_CONSTANT         = -999.9                                         
+    START_BYTE               = 114                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 17                                             
+    NAME                     = "CURB"                                         
+    DESCRIPTION              = "Current in Cup B (CCW from Cup A)"            
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "picoamps"                                     
+    MISSING_CONSTANT         = -999.9                                         
+    START_BYTE               = 122                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 18                                             
+    NAME                     = "CURC"                                         
+    DESCRIPTION              = "Current in Cup C (CW from Cup A)"             
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "picoamps"                                     
+    MISSING_CONSTANT         = -999.9                                         
+    START_BYTE               = 130                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 19                                             
+    NAME                     = "CUR7"                                         
+    DESCRIPTION              = "Current in Cup 7 (center, vertical)"          
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "picoamps"                                     
+    MISSING_CONSTANT         = -999.9                                         
+    START_BYTE               = 138                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 20                                             
+    NAME                     = "FACTD"                                        
+    DESCRIPTION              = "Correction for M-B least sq est of density"   
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F4.2"                                         
+    MISSING_CONSTANT         = 9.99                                           
+    START_BYTE               = 146                                            
+    BYTES                    = 4                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+  OBJECT                     = COLUMN                                         
+    COLUMN_NUMBER            = 21                                             
+    NAME                     = "XNOISE"                                       
+    DESCRIPTION              = "Noise level used in estimating angles"        
+    DATA_TYPE                = "ASCII_REAL"                                   
+    FORMAT                   = "F6.1"                                         
+    UNIT                     = "picoamps"                                     
+    MISSING_CONSTANT         = -999.9                                         
+    START_BYTE               = 152                                            
+    BYTES                    = 6                                              
+  END_OBJECT                 = COLUMN                                         
+                                                                              
+END_OBJECT                   = TABLE                                          
+                                                                              
+END                                                                           
