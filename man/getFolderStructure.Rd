@@ -13,7 +13,7 @@ getFolderStructure(url)
   \item{url}{A character string naming the URL of a FTP.}
 }
 \details{
-None
+this and that
 }
 \value{
 Nested list containing folder and their folder and files.
@@ -28,7 +28,7 @@ Joshua Kunst
 
 %\seealso{\code{\link{help}}}
 \examples{
-getFolderStructure("ftp://pds-geosciences.wustl.edu/earth/grsfe/")
+\dontrun{getFolderStructure("ftp://pds-geosciences.wustl.edu/earth/grsfe/")}
 }
 
 % R documentation directory.

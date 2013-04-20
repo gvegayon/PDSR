@@ -1,17 +1,17 @@
-\name{parseLbl}
-\alias{parseLbl}
+\name{readPDStable}
+\alias{readPDStable}
 \title{
-PDS lbl files parser
+Reaches colnames of every table within a PDS object
 }
 \description{
 Reaches colnames of every table within a PDS object
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-parseLbl(x)
+readPDStable(header)
 }
 \arguments{
-  \item{x}{A PDSR class object}
+  \item{header}{A PDSR class object}
 }
 \details{
 this and that

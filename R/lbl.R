@@ -143,7 +143,7 @@ dirMissions <- function(keywords=NULL, updateit=FALSE, silent=FALSE) {
     
     message("Conecting to http://pds.jpl.nasa.gov/tools/dsstatus/")
     pdestatusuri <- "http://pds.jpl.nasa.gov/tools/dsstatus/dsidStatus.jsp?sortOpt1=di.dsid&sortOpt2=&sortOpt3=&sortOpt4=&sortOpt5=&nodename=ALL&col2=dm.msnname&col3=&col4=&col5=&Go=Submit"
-    .missions <<- try(readHTMLTable(pdestatusuri, header=TRUE)[[3]])
+    assign(.missions,try(readHTMLTable(pdestatusuri, header=TRUE)[[3]]))
     
     if (class(.missions) == "try-error") stop("Connection failed.")
   }
@@ -157,6 +157,6 @@ dirMissions <- function(keywords=NULL, updateit=FALSE, silent=FALSE) {
     # Building regex
     if (length(keywords)>1) keywords <- paste(keywords, sep="|")
     
-    return(.missions[grepl(keywords, missions[,2]),])
+    return(.missions[grepl(keywords, .missions[,2]),])
   }  
 }

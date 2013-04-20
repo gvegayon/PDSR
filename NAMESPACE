@@ -3,7 +3,7 @@ importFrom(RCurl)
 importFrom(plyr)
 
 # Labeling process
-export(getColnames, parseLbl, rmQuotes, trimString)
+export(getColnames, parseLbl, .rmQuotes, .trimString)
 
 # FTP connection
 export(getFolderStructure, dirMissions)
