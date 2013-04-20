@@ -10,5 +10,6 @@
 .*\.png
 .*\.gexf$
 ^.*\.Rproj$
+^data$
 
 

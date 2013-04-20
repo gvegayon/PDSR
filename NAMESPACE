@@ -1,8 +1,17 @@
+importFrom(XML)
 importFrom(RCurl)
 importFrom(plyr)
 
+# Labeling process
 export(getColnames, parseLbl, rmQuotes, trimString)
 
+# FTP connection
+export(getFolderStructure, dirMissions)
+
+# Data processsing
+export(readPDStable)
+
+
 # Methods
-S3method(print, PDSR)
-S3method(summary, PDSR)
+#S3method(print, PDSR)
+#S3method(summary, PDSR)

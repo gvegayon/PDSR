@@ -32,3 +32,36 @@ getFolderStructure <- function(url){
   
   return(tree)
 }
+
+# getMissions
+# description:
+# Returs a dataframe of the existing missions that suit a keyword
+dirMissions <- function(keywords=NULL, updateit=FALSE, silent=FALSE) {
+  
+  # First checks if .mission DF already exists
+  if (!exists(".missions", envir=.GlobalEnv) | !updateit) {
+    if (!silent) warning("Object \'.missions\' already exists")
+  }
+  else { # Downloading data
+    
+    message("Conecting to http://pds.jpl.nasa.gov/tools/dsstatus/ ...")
+    pdestatusuri <- "http://pds.jpl.nasa.gov/tools/dsstatus/dsidStatus.jsp?sortOpt1=di.dsid&sortOpt2=&sortOpt3=&sortOpt4=&sortOpt5=&nodename=ALL&col2=dm.msnname&col3=&col4=&col5=&Go=Submit"
+    .missions <<- try(readHTMLTable(pdestatusuri, header=TRUE, 
+                                    stringsAsFactors=FALSE)[[3]]
+                      )
+    
+    if (class(.missions) == "try-error") stop("Connection failed.")
+  }
+  
+  if (length(keywords)==0) return(.missions)
+  else {
+    # Unlisting
+    keywords <- unlist(keywords, recursive=TRUE)
+    if (length(keywords)==0) return(.missions)
+    
+    # Building regex
+    if (length(keywords)>1) keywords <- paste(keywords, sep="|")
+    
+    return(.missions[grepl(keywords, missions[,2], ignore.case=TRUE),])
+  }  
+}
