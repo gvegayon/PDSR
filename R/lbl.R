@@ -84,7 +84,7 @@ parseLbl <- function(x) {
       }
       
       # Remove border quotes
-      lbls[length(lbls)] <- .rmQuotes(lbls[length(lbls)])
+      lbls[length(lbls)] <- .rmQuotes(.trimString(lbls[length(lbls)]))
       next
     }
     
