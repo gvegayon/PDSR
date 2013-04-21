@@ -6,31 +6,39 @@ getFolderStructure <- function(url){
   
   pattern <- "^([0-9]{2}[-][0-9]{2}[-][0-9]{2})[\\t ]*([0-9]{2}[:][0-9]{2}[A-Z]+)[\\t ]*(.*)"
   
-  message(sprintf("Accessing to \"%s\"", url))
+  message("Accessing to ", url)
   
   # Get folder
-  fileNames <- strsplit(getURL(url), "\\\r\\\n")[[1]]
-  m <- regexec(pattern, fileNames)
-  matches <- regmatches(fileNames, m)
-  directory <- laply(matches, function(x) x[4])
+  fileNames <- try(getURL(url))
   
-  # Separate folders and files
-  folders <- gsub("^\\s+|\\s+$", "", gsub("<DIR>", "", directory))[grepl("<DIR>", directory)]
-  files <- gsub("^\\d+\\s*", "",directory)[!grepl("<DIR>", directory)]
-  
-  # Make the list
-  tree <- llply(c(folders, files), function(x) {x})
-  names(tree) <- c(folders, files)
-  
-  
-  # Verify if folder have some folder to execute the function again
-  if(length(folders)!=0){
-    for(i in 1:length(folders)){
-      tree[folders[i]] <- list(getFolderStructure(paste0(url, folders[i], "/")))
+  if (class(fileNames)!="try-error") {
+    fileNames <- strsplit(fileNames, "\\\r?\\\n")[[1]]
+    
+    # Parsing lines
+    m <- regexec(pattern, fileNames)
+    matches <- regmatches(fileNames, m)
+    directory <- laply(matches, function(x) x[4])
+    
+    # Separate folders and files
+    folders <- .trimString(gsub("<DIR>", "", directory))[grepl("<DIR>", directory)]
+    files <- sapply(directory,.trimString)[!grepl("<DIR>", directory)]
+    
+    # Make the list
+    tree <- llply(c(folders, files), function(x) {x})
+    names(tree) <- c(folders, files)
+    
+    
+    # Verify if folder have some folder to execute the function again
+    if(length(folders)!=0){
+      for(i in 1:length(folders)){
+        subtree <- getFolderStructure(sprintf("%s/%s/",url, as.character(folders[i])))
+        tree[folders[i]] <- list(subtree)
+      }
     }
+    
+    return(tree)
   }
-  
-  return(tree)
+  else return(fileNames[1])
 }
 
 # getMissions
