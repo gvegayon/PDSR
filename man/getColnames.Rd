@@ -1,34 +1,36 @@
 \name{getColnames}
 \alias{getColnames}
 \title{
-Reaches colnames of every table within a PDS object
+Retrieve information of the variables from a .lbl file
 }
 \description{
-Reaches colnames of every table within a PDS object
+Given a path to a .lbl file this function get the column names of the asociated .tab file. 
 }
 \usage{
 getColnames(x)
 }
 \arguments{
-  \item{x}{A PDSR class object}
+  \item{x}{A string indicating the path of a .lbl file.}
 }
 \details{
 this and that
 }
 \value{
-Nested list containing tables and their colnames
+A character vector of names.
 }
 % \references{}
 \author{
-George
+George Vega
 }
 %\note{%%  ~~further notes~~}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 %\seealso{\code{\link{help}}}
-% \examples{}
+ \examples{
+getColnames("data/apollo12_sws_28s_19760325.lbl")
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ IO }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line 

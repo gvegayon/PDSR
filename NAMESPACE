@@ -1,6 +1,7 @@
 importFrom(XML)
 importFrom(RCurl)
 importFrom(plyr)
+importFrom(ggplot2)
 # For ploting
 importFrom(GGally)
 importFrom(reshape2)
@@ -13,10 +14,10 @@ export(getColnames, parseLbl, .rmQuotes, .trimString)
 export(getFolderStructure, dirMissions)
 
 # Data processsing
-export(readPDStable)
+export(readPDStable, flattenMissionTree, exploreMission, getMissionTree)
 
 
 # Methods
 #S3method(print, PDSR)
-S3method(summary, PDSR)
-S3method(plot, PDSR)
+S3method(summary, PDS)
+S3method(plot, PDS)

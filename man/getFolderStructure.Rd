@@ -20,7 +20,7 @@ Nested list containing folder and their folder and files.
 }
 % \references{}
 \author{
-Joshua Kunst
+Joshua B. Kunst
 }
 %\note{%%  ~~further notes~~}
 

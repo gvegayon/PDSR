@@ -10,6 +10,6 @@
 .*\.png
 .*\.gexf$
 ^.*\.Rproj$
-^data$
-
-
+^\.txt$
+^\.lbl$
+^\.tab$

@@ -1,34 +1,36 @@
 \name{parseLbl}
 \alias{parseLbl}
 \title{
-PDS lbl files parser
+Parser for .lbl files.
 }
 \description{
-Reaches colnames of every table within a PDS object
+This function parser the labels files extracting information about the asociated data.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
 parseLbl(x)
 }
 \arguments{
-  \item{x}{A PDSR class object}
+  \item{x}{A character indicating the path of a .lbl object.}
 }
 \details{
-this and that
+This is a recursive function which use regex to perform the extraction of the information.
 }
 \value{
-Nested list containing tables and their colnames
+A nested list with the information.
 }
 % \references{}
 \author{
-George
+George Vega
 }
 %\note{%%  ~~further notes~~}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 %\seealso{\code{\link{help}}}
-% \examples{}
+\examples{
+parseLbl("data/apollo12_sws_28s_19760325.lbl")
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ IO }

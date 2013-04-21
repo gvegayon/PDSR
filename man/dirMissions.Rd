@@ -1,7 +1,7 @@
 \name{dirMissions}
 \alias{dirMissions}
 \title{
-Lists/matchs keywords with missions names.
+Returns a data.frame of the existing missions that suit a keyword
 }
 \description{
 Given a single or a set of keywords, this function lists NASA's missions
@@ -11,8 +11,8 @@ and returns a two column data-frame including its name and ID (for PDS)
 dirMissions(keywords=NULL, missions=NULL)
 }
 \arguments{
-  \item{keywords}{A single string or list of strings of keywords to match}
-  \item{missions}{A data.frame of missions.}
+  \item{keywords}{An optional vector character with pattern to search in the list of NASA's missions.}
+  \item{missions}{An optional data.frame of missions.}
 }
 \details{
 If no \code{keywords} is given, then the full set of missions will be returned, otherwise

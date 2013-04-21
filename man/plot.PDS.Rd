@@ -7,7 +7,7 @@ Ploting a PDS object
 This function make a plot of a PDS object.
 }
 \usage{
-plot.PDS(object, variables, type = c("ggpairs", "plotmatrix", "time"))
+\method{plot}{PDS}(object, variables, type = c("ggpairs", "plotmatrix", "time"))
 }
 \arguments{
   \item{object}{A PDS Object.}
@@ -22,7 +22,7 @@ Depending on the type of plot, this function can return a ggplot oject or ggpair
 }
 % \references{}
 \author{
-Joshua Kunst
+Joshua B. Kunst
 }
 %\note{%%  ~~further notes~~}
 

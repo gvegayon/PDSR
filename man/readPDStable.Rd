@@ -1,10 +1,10 @@
 \name{readPDStable}
 \alias{readPDStable}
 \title{
-Reaches colnames of every table within a PDS object
+Retrieve data into a PDS object.
 }
 \description{
-Reaches colnames of every table within a PDS object
+Given a data id download the data from the ftp://pds-geosciences.wustl.edu/ and it convert into a PDS object
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -14,14 +14,14 @@ readPDStable(dataid)
   \item{dataid}{String of PDS data id}
 }
 \details{
-this and that
+Given a header search for two files, a plain-text table (.tab) and plain text metadata file (.lbl) which describes table data.
 }
 \value{
-Nested list containing tables and their colnames
+A PDS object.
 }
 % \references{}
 \author{
-George
+George G. Vega
 }
 %\note{%%  ~~further notes~~}
 

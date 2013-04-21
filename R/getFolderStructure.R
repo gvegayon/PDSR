@@ -9,6 +9,9 @@ getFolderStructure <- function(url, maxdep=-1, dep=0){
   
   message("Accessing to ", url)
   
+  # Small correction
+  if (!grepl("/$",url)) url <- sprintf("%s/",url)
+  
   # Get folder
   fileNames <- try(getURL(url), silent=TRUE)
   
@@ -43,7 +46,7 @@ getFolderStructure <- function(url, maxdep=-1, dep=0){
     if(length(folders)!=0){
       
       # Checking if maxrec is not set
-      if (maxdep > 0) {
+      if (maxdep >= 0) {
         if (maxdep <= dep) {
           return(tree)
         }
@@ -98,6 +101,11 @@ dirMissions <- function(keywords=NULL, missions=NULL) {
   }  
 }
 
+# getMissionTree
+# Description:
+# Search among all available FTP access and stores them in nested
+# lists. With this function the dataset "fullMissionLists" was
+# built.
 getMissionTree <- function(dataid) {
   
   # Getting missions lists
@@ -106,9 +114,105 @@ getMissionTree <- function(dataid) {
   plasma <- getFolderStructure("ftp://pds-ppi.igpp.ucla.edu/", maxdep=1)
   ringno <- getFolderStructure("ftp://pds-rings.seti.org/", maxdep=1)
   
-  return(list(atmoph, geosci, plasma, ringno))
+  # Building and naming
+  output <- list(atmoph, geosci, plasma, ringno)
+  names(output) <- c(
+    "ftp://pds-atmospheres.nmsu.edu/",
+    "ftp://pds-geosciences.wustl.edu/",
+    "ftp://pds-ppi.igpp.ucla.edu/",
+    "ftp://pds-rings.seti.org/"
+    )
+  
+  return(output)
 }
 
-#x <- getMissionTree("")
+# flattenMissionTree
+# Description:
+# Returns a list of URLs from which a program can be matched
+flattenMissionTree <- function(object) {
+  
+  # Getting root URLs
+  namestmp <- names(object)
+  object <- unlist(object)
+  names(object) <- gsub("\\.", "/", names(object))
+  
+  # Replacing / by .
+  for (i in namestmp) {
+    names(object) <- gsub(gsub("\\.", "/", i), i, names(object))
+  }
+  
+  return(object)
+}
 
-# atmoph <- getFolderStructure("ftp://pds-atmospheres.nmsu.edu/", maxdep=1)
+getMissionURL <- function(dataid, fullMissions=NULL) {
+  # Loads data
+  if (length(fullMissions) == 0) 
+    data(fullMissionLists, envir=environment())
+  else fullMissionLists <- fullMissions
+  
+  # Matching mission
+  pattern <- gsub("\\.[0-9]+","", dataid)
+  pattern <- tolower(gsub("\\.","/", pattern))
+  output <- tolower(names(flattenMissionTree(fullMissionLists)))
+  
+  output <- output[grepl(pattern, output, fixed=TRUE)]
+  
+  if (length(output) > 0) {
+    
+    # Name replacing
+    for (i in 1:length(output)) {
+      names(output)[i] <- gsub(gsub("\\.","/",output[i]), output[i], names(output)[i])
+    }
+    return(output)
+  }
+  else {
+    message("No mission with id ", dataid)
+    return(NULL)
+  }
+}
+
+exploreMission <- function(dataid, fullMissions=NULL) {
+  
+  # Getting the corresponding URLs
+  urls <- getMissionURL(dataid, fullMissions)
+  
+  # Checking number of URLs
+  if ((nm <- length(urls)) == 0) {
+    message("0 missions fund.")
+    return(NULL)
+  }
+  else if (nm > 1) warning(nm, " missions where found")
+    
+  # Fetching data from FTP
+  output <- NULL
+  
+  # Looking over the URLs
+  for (i in 1:nm) {
+    
+    # While no datafile found, keep looking
+    outputtmp <- getFolderStructure(urls[i], maxdep=0)
+    nodata <- TRUE
+    j <- 1
+    while (nodata) {
+      outputtmp <- getFolderStructure(urls[i], maxdep=0+j)
+      j <- j + 1
+      
+      nodata <- !any(unlist(outputtmp) == "data")
+    }
+
+    # Getting the data URL
+    outputtmp <- names(unlist(outputtmp))
+    outputtmp <- outputtmp[grepl("data$", outputtmp)]
+    
+    # Fixing URL
+    outputtmp <- gsub("\\.","/",outputtmp)
+
+    #outputtmp <- gsub(gsub("\\.","/",urls[i]), urls[i], outputtmp)    
+    outputtmp <- getFolderStructure(sprintf("%s/%s/",urls[i],outputtmp))
+    
+    output[[i]] <- outputtmp
+  }
+  
+  names(output) <- urls
+  return(output)
+}

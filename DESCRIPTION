@@ -7,6 +7,6 @@ Author: George G. Vega <g.vegayon@gmail.com> [aut], Joshua B. Kunst <jbkunst@gma
 Maintainer: George G. Vega <g.vegayon@gmail.com>
 Description: PDSR use NASA's FTP service to smoothly access PDS. Through metadata file parsing, it helps the data-scientist downloading and describing data without using the web-browser.
 URL: http://github.com/gvegayon/PDSR
-Depends: XML, RCurl, plyr
+Depends: XML, RCurl, plyr, ggplot2, GGally, reshape2,scales
 License: GPL (>= 3)
 LazyLoad: yes
