@@ -2,9 +2,9 @@ importFrom(XML)
 importFrom(RCurl)
 importFrom(plyr)
 # For ploting
-library(GGally)
-library(reshape2)
-library(scales)
+importFrom(GGally)
+importFrom(reshape2)
+importFrom(scales)
 
 # Labeling process
 export(getColnames, parseLbl, .rmQuotes, .trimString)
@@ -18,5 +18,5 @@ export(readPDStable)
 
 # Methods
 #S3method(print, PDSR)
-#S3method(summary, PDSR)
-#S3method(plot, PDSR)
+S3method(summary, PDSR)
+S3method(plot, PDSR)
