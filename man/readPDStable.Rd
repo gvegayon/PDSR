@@ -8,10 +8,10 @@ Reaches colnames of every table within a PDS object
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-readPDStable(header)
+readPDStable(dataid)
 }
 \arguments{
-  \item{header}{A PDSR class object}
+  \item{dataid}{String of PDS data id}
 }
 \details{
 this and that

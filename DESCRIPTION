@@ -5,8 +5,8 @@ Version: 0.13.04
 Date: 2013-04-21
 Author: George G. Vega <g.vegayon@gmail.com> [aut], Joshua B. Kunst <jbkunst@gmail.com> [aut]
 Maintainer: George G. Vega <g.vegayon@gmail.com>
-Description: The first R package to work with GEXF graph files (used in Gephi and others). Using XML library, it allows the user to easily build/read graph files including attributes, GEXF viz attributes (such as colour, size, and position), network dynamics (for both edges and nodes, including spells) and edges weighting. Users can build/handle graphs element-by-element or massively through data-frames.
-URL: http://github.com/gvegayon/pdsr
+Description: PDSR use NASA's FTP service to smoothly access PDS. Through metadata file parsing, it helps the data-scientist downloading and describing data without using the web-browser.
+URL: http://github.com/gvegayon/PDSR
 Depends: XML, RCurl, plyr
 License: GPL (>= 3)
 LazyLoad: yes

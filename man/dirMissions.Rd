@@ -1,36 +1,36 @@
 \name{dirMissions}
 \alias{dirMissions}
 \title{
-Reaches colnames of every table within a PDS object
+Lists/matchs keywords with missions names.
 }
 \description{
-Reaches colnames of every table within a PDS object
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Given a single or a set of keywords, this function lists NASA's missions
+and returns a two column data-frame including its name and ID (for PDS)
 }
 \usage{
 dirMissions(keywords=NULL, missions=NULL)
 }
 \arguments{
-  \item{keywords}{A PDSR class object}
-  \item{missions}{A PDSR class object}
+  \item{keywords}{A single string or list of strings of keywords to match}
+  \item{missions}{A data.frame of missions.}
 }
 \details{
-this and that
+If no \code{keywords} is given, then the full set of missions will be returned, otherwise
+a regex match will be made against missions' names.
+
+If \code{mission} is \code{NULL}, then \code{dirMissions} will retrive
+an updated set of missions from \url{http://pds.jpl.nasa.gov/tools/dsstatus/}
 }
 \value{
-Nested list containing tables and their colnames
+Two-column data.frame containing missions PDS Id and Name.
 }
-% \references{}
 \author{
-George
+George G. Vega
 }
-%\note{%%  ~~further notes~~}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-%\seealso{\code{\link{help}}}
-% \examples{}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ IO }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\seealso{\code{\link{getFolderStructure}}}
+\examples{
+\dontrun{
+marcians <- dirMissions("mars")
+}
+}
+%\keyword{ IO }
