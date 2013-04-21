@@ -4,24 +4,36 @@ getFolderStructure <- function(url, maxdep=-1, dep=0){
   # Mode of use: getFolderStructure(url_of_ftp)
   # Example: getFolderStructure("ftp://pds-geosciences.wustl.edu/earth/grsfe/")
   
-  pattern <- "^([0-9]{2}[-][0-9]{2}[-][0-9]{2})[\\t ]*([0-9]{2}[:][0-9]{2}[A-Z]+)[\\t ]*(.*)"
+  patternwin <- "^([0-9]{2}[-][0-9]{2}[-][0-9]{2})[\\t ]*([0-9]{2}[:][0-9]{2}[A-Z]+)[\\t ]*(.*)"
+  patternuni <- "([a-zA-Z0-9_]+\\.*[a-zA-Z0-9_]+)+$"
   
   message("Accessing to ", url)
   
   # Get folder
-  fileNames <- try(getURL(url))
+  fileNames <- try(getURL(url), silent=TRUE)
   
   if (class(fileNames)!="try-error") {
     fileNames <- strsplit(fileNames, "\\\r?\\\n")[[1]]
     
     # Parsing lines
-    m <- regexec(pattern, fileNames)
-    matches <- regmatches(fileNames, m)
-    directory <- laply(matches, function(x) x[4])
-    
-    # Separate folders and files
-    folders <- .trimString(gsub("<DIR>", "", directory))[grepl("<DIR>", directory)]
-    files <- sapply(directory,.trimString)[!grepl("<DIR>", directory)]
+    if (grepl(patternwin, fileNames[1])) { # if windows like
+      m <- regexec(patternwin, fileNames)
+      matches <- regmatches(fileNames, m)
+      directory <- laply(matches, function(x) x[4])
+      
+      # Separate folders and files
+      folders <- .trimString(gsub("<DIR>", "", directory))[grepl("<DIR>", directory)]
+      files <- sapply(directory,.trimString)[!grepl("<DIR>", directory)]
+    }
+    else {                                # if unix like
+      m <- regexec(patternuni, fileNames)
+      matches <- regmatches(fileNames, m)
+      directory <- laply(matches, function(x) x[1])
+      
+      # Separate folders and files
+      folders <- directory[!grepl("\\.[a-zA-Z]+$", directory)]
+      files <- directory[grepl("\\.[a-zA-Z]+$", directory)]
+    }
     
     # Make the list
     tree <- llply(c(folders, files), function(x) {x})
@@ -47,7 +59,10 @@ getFolderStructure <- function(url, maxdep=-1, dep=0){
     
     return(tree)
   }
-  else return(fileNames[1])
+  else {
+    warning("A problem with ", url)
+    return(fileNames[1])
+  }
 }
 
 # getMissions
@@ -93,3 +108,7 @@ getMissionTree <- function(dataid) {
   
   return(list(atmoph, geosci, plasma, ringno))
 }
+
+#x <- getMissionTree("")
+
+# atmoph <- getFolderStructure("ftp://pds-atmospheres.nmsu.edu/", maxdep=1)
