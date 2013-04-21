@@ -7,8 +7,8 @@ Ploting a PDS object
 This function make a plot of a PDS object.
 }
 \usage{
-\method{plot}{PDS}(x, variables=sample(names(object$table), size =
-                 min(c(4, ncol(object$table)))), type = c("ggpairs",
+\method{plot}{PDS}(x, variables=sample(names(x$table), size =
+                 min(c(4, ncol(x$table)))), type = c("ggpairs",
                  "plotmatrix", "time"), ...)
 }
 \arguments{

@@ -160,5 +160,5 @@ getColnames <- function(x) {
   }
 }
 
-x <- parseLbl(readLines("a17_traverse_gravity_data.lbl"))
-x <- getColnames(x)
+#x <- parseLbl(readLines("a17_traverse_gravity_data.lbl"))
+#x <- getColnames(x)

@@ -7,11 +7,12 @@ Explore missions datasets
 This function parser the labels files extracting information about the asociated data.
 }
 \usage{
-exploreMission(dataid, fullMissions=NULL)
+exploreMission(dataid, fullMissions=NULL, maxdep = 1)
 }
 \arguments{
   \item{dataid}{A character indicating the path of a .lbl object.}
   \item{fullMissions}{A character indicating the path of a .lbl object.}
+  \item{maxdep}{Integer of the maximum number of recursions.}
 }
 \details{
 This is a recursive function which use regex to perform the extraction of the information.
