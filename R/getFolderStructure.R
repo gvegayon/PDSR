@@ -26,7 +26,9 @@ getFolderStructure <- function(url, maxdep=-1, dep=0){
       
       # Separate folders and files
       folders <- .trimString(gsub("<DIR>", "", directory))[grepl("<DIR>", directory)]
-      files <- sapply(directory,.trimString)[!grepl("<DIR>", directory)]
+      files <- gsub("[0-9]+[\\t ]+", "",
+                    sapply(directory,.trimString)[!grepl("<DIR>", directory)]
+      )
     }
     else {                                # if unix like
       m <- regexec(patternuni, fileNames)
@@ -35,7 +37,8 @@ getFolderStructure <- function(url, maxdep=-1, dep=0){
       
       # Separate folders and files
       folders <- directory[!grepl("\\.[a-zA-Z]+$", directory)]
-      files <- directory[grepl("\\.[a-zA-Z]+$", directory)]
+      files <- gsub("[0-9]+[\\t ]+", "",
+                    directory[grepl("\\.[a-zA-Z]+$", directory)])
     }
     
     # Make the list
@@ -101,18 +104,18 @@ dirMissions <- function(keywords=NULL, missions=NULL) {
   }  
 }
 
-# getMissionTree
+# getMissionsList
 # Description:
 # Search among all available FTP access and stores them in nested
 # lists. With this function the dataset "fullMissionLists" was
 # built.
-getMissionTree <- function(dataid) {
+getMissionsList <- function(maxdep=1) {
   
   # Getting missions lists
-  atmoph <- getFolderStructure("ftp://pds-atmospheres.nmsu.edu/", maxdep=1)
-  geosci <- getFolderStructure("ftp://pds-geosciences.wustl.edu/", maxdep=1)
-  plasma <- getFolderStructure("ftp://pds-ppi.igpp.ucla.edu/", maxdep=1)
-  ringno <- getFolderStructure("ftp://pds-rings.seti.org/", maxdep=1)
+  atmoph <- getFolderStructure("ftp://pds-atmospheres.nmsu.edu/", maxdep=maxdep)
+  geosci <- getFolderStructure("ftp://pds-geosciences.wustl.edu/", maxdep=maxdep)
+  plasma <- getFolderStructure("ftp://pds-ppi.igpp.ucla.edu/", maxdep=maxdep)
+  ringno <- getFolderStructure("ftp://pds-rings.seti.org/", maxdep=maxdep)
   
   # Building and naming
   output <- list(atmoph, geosci, plasma, ringno)
@@ -129,7 +132,7 @@ getMissionTree <- function(dataid) {
 # flattenMissionTree
 # Description:
 # Returns a list of URLs from which a program can be matched
-flattenMissionTree <- function(object) {
+.flattenMissionTree <- function(object) {
   
   # Getting root URLs
   namestmp <- names(object)
@@ -144,16 +147,18 @@ flattenMissionTree <- function(object) {
   return(object)
 }
 
+# getMissionURL :
+# Given a dataid, returns the corresponding root FTP path of the mission
 getMissionURL <- function(dataid, fullMissions=NULL) {
   # Loads data
   if (length(fullMissions) == 0) 
-    data(fullMissionLists, envir=environment())
-  else fullMissionLists <- fullMissions
+    data(fullMissionsList, envir=environment())
+  else fullMissionsList <- fullMissions
   
   # Matching mission
   pattern <- gsub("\\.[0-9]+","", dataid)
   pattern <- tolower(gsub("\\.","/", pattern))
-  output <- tolower(names(flattenMissionTree(fullMissionLists)))
+  output <- tolower(names(.flattenMissionTree(fullMissionsList)))
   
   output <- output[grepl(pattern, output, fixed=TRUE)]
   
@@ -171,7 +176,10 @@ getMissionURL <- function(dataid, fullMissions=NULL) {
   }
 }
 
-exploreMission <- function(dataid, fullMissions=NULL) {
+# exploreMission
+# Looks for the matching FTP path to access an specific mission
+# data ID.
+exploreMission <- function(dataid, fullMissions=NULL, maxdep=1) {
   
   # Getting the corresponding URLs
   urls <- getMissionURL(dataid, fullMissions)
@@ -190,11 +198,13 @@ exploreMission <- function(dataid, fullMissions=NULL) {
   for (i in 1:nm) {
     
     # While no datafile found, keep looking
-    outputtmp <- getFolderStructure(urls[i], maxdep=0)
+    suppressMessages(outputtmp <- getFolderStructure(urls[i], maxdep=0))
     nodata <- TRUE
     j <- 1
     while (nodata) {
+      suppressMessages(
       outputtmp <- getFolderStructure(urls[i], maxdep=0+j)
+      )
       j <- j + 1
       
       nodata <- !any(unlist(outputtmp) == "data")
@@ -206,9 +216,10 @@ exploreMission <- function(dataid, fullMissions=NULL) {
     
     # Fixing URL
     outputtmp <- gsub("\\.","/",outputtmp)
-
-    #outputtmp <- gsub(gsub("\\.","/",urls[i]), urls[i], outputtmp)    
-    outputtmp <- getFolderStructure(sprintf("%s/%s/",urls[i],outputtmp))
+    
+    # Reading the last line
+    urls[i] <- sprintf("%s/%s/",urls[i],outputtmp)
+    outputtmp <- getFolderStructure(urls[i], maxdep=maxdep)
     
     output[[i]] <- outputtmp
   }

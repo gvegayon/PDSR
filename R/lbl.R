@@ -1,4 +1,4 @@
-# parseLine
+# .trimString
 # description:
 # Gets the value and name of a property
 .trimString <- function(x) {
@@ -15,7 +15,7 @@
 # parseLine
 # description:
 # Gets the value and name of a property
-parseLine <- function(x) {
+.parseLine <- function(x) {
   
   # Matching Line label
   pattern <- "(\\^?[A-Z_]+)+[\\t ]*[=](.*)*"
@@ -66,7 +66,7 @@ parseLbl <- function(x) {
       
       # Adding subelement 
       lbls[[length(lbls)+1]] <- parseLbl(x[(i+1):(i2-1)])
-      names(lbls)[[length(lbls)]] <- parseLine(x[i])[[1]]
+      names(lbls)[[length(lbls)]] <- .parseLine(x[i])[[1]]
       
       i <- i2 + 1
       curline <- x[i]
@@ -90,7 +90,7 @@ parseLbl <- function(x) {
     
     # Normal case
     else {
-      lbls <- c(lbls, parseLine(curline))
+      lbls <- c(lbls, .parseLine(curline))
     }
     
     # Next

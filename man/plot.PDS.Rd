@@ -7,12 +7,15 @@ Ploting a PDS object
 This function make a plot of a PDS object.
 }
 \usage{
-\method{plot}{PDS}(object, variables, type = c("ggpairs", "plotmatrix", "time"))
+\method{plot}{PDS}(x, variables=sample(names(object$table), size =
+                 min(c(4, ncol(object$table)))), type = c("ggpairs",
+                 "plotmatrix", "time"), ...)
 }
 \arguments{
-  \item{object}{A PDS Object.}
-  \item{variable}{A character vector with names of variables in the object$table data.frame.}
+  \item{x}{A PDS Object.}
+  \item{variables}{A character vector with names of variables in the object$table data.frame.}
   \item{type}{A string indicating the type of plot between "ggpairs", "plotmatrix" and "time".}
+  \item{...}{Other arguments of plot (unused)}
 }
 \details{
 ggpairs is 

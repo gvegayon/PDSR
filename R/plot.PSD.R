@@ -1,13 +1,13 @@
-plot.PDS <- function(object, variables = sample(names(object$table), size = min(c(4,ncol(object$table)))), 
+plot.PDS <- function(x, variables = sample(names(object$table), size = min(c(4,ncol(object$table)))), 
                      type = c("ggpairs", "plotmatrix", "time"), ...) {
   
-  table <- object$table
+  table <- x$table
   table <- subset(table, select = variables)
   if(type == "time"){
-    stopifnot(any(object$lbl$DATA_TYPE == "TIME"))
+    stopifnot(any(x$lbl$DATA_TYPE == "TIME"))
     
-    var_time <- names(object$table)[which(object$lbl$DATA_TYPE=="TIME")]  
-    table$TIME <- as.POSIXct(as.character(object$table[[var_time]]), format = "%Y-%m-%dT%H:%M:%S")
+    var_time <- names(x$table)[which(x$lbl$DATA_TYPE=="TIME")]  
+    table$TIME <- as.POSIXct(as.character(x$table[[var_time]]), format = "%Y-%m-%dT%H:%M:%S")
 
     p <- ggplot(melt(table, id.vars="TIME")) +
       geom_line(aes(TIME, value, color = variable, group = variable)) +

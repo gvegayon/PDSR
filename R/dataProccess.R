@@ -2,7 +2,7 @@ readPDStable <- function(dataid) {
   # Reading files
   lbl <- parseLbl(readLines(paste(dataid, "lbl",sep=".")))
   tab <- read.table(paste(dataid, "tab",sep="."), skip=2)
-  lbl2 <<- lbl
+  
   # Adding colnames
   colnames(tab) <- (lblcols <- getColnames(lbl)[[1]])$NAME
 

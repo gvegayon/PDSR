@@ -1,5 +1,5 @@
-\name{fullMissionLists}
-\alias{fullMissionLists}
+\name{fullMissionsList}
+\alias{fullMissionsList}
 \docType{data}
 \title{
 Nested List containing NASA Missions
@@ -7,7 +7,7 @@ Nested List containing NASA Missions
 \description{
 This list is used to lookup specific datasets IDs in order to get access to their FTP path.
 }
-\usage{data(fullMissionLists)}
+\usage{data(fullMissionsList)}
 \format{
   A nested list containing NASA's PDS FTP paths.
 }
@@ -19,10 +19,7 @@ This list is used to lookup specific datasets IDs in order to get access to thei
 \item{Planetary Rings Node \url{ftp://pds-rings.seti.org/}}
     }
 }
-\references{
-%%  ~~ possibly secondary sources and usages ~~
-}
 \examples{
-data(fullMissionLists)
+data(fullMissionsList)
 }
 \keyword{datasets}

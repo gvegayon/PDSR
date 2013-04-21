@@ -14,7 +14,8 @@ export(getColnames, parseLbl, .rmQuotes, .trimString)
 export(getFolderStructure, dirMissions)
 
 # Data processsing
-export(readPDStable, flattenMissionTree, exploreMission, getMissionTree)
+export(readPDStable, .flattenMissionTree, exploreMission, getMissionsList,
+       getMissionURL)
 
 
 # Methods
