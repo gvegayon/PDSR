@@ -5,10 +5,16 @@ readPDStable <- function(dataid) {
   
   # Reading files
   lbl <- parseLbl(readLines(paste(dataid, "lbl",sep=".")))
-  tab <- read.table(paste(dataid, "tab",sep="."), skip=2)
+  lblcols <- getColnames(lbl)[[1]]
+  
+  # Seting width
+  width <- as.numeric(lblcols$BYTES) + 2
+  
+  print(width)
+  tab <- read.fwf(paste(dataid, "tab",sep="."), widths=width, skip=2, sep="^")
   
   # Adding colnames
-  colnames(tab) <- (lblcols <- getColnames(lbl)[[1]])$NAME
+  colnames(tab) <- lblcols$NAME
 
   output <- list(table=tab, lbl=lblcols, desc=lbl$TABLE$DESCRIPTION,
                  mission=lbl$MISSION_NAME, datasetid=lbl$DATA_SET_ID)

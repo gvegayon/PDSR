@@ -34,17 +34,18 @@
 # parseLbl
 # Recursive nesting and parsing
 parseLbl <- function(x) {
-  
+
   # Trim lines
-  x <- sapply(x, .trimString)
+  x <- .trimString(x)
+  
   
   # Removes comments
-  x <- sapply(x, gsub, patter="/\\*.*", replace="")
+  x <- sapply(x, gsub, patter="/\\*.+", replace="")
   
   # REGEX patterns
-  strobj <- "^[\\t ]*OBJECT"
-  endobj <- "^[\\t ]*END\\_OBJECT"
-  fulline <- "(\\^?[A-Z_]+)+[\\t ]*[=](.*)+"
+  strobj <- "^OBJECT"
+  endobj <- "^END\\_OBJECT"
+  fulline <- "(\\^?[A-Z_]+)+[\\t ]*[=](.+)"
   
   nlines <- length(x)
   lbls <- NULL
@@ -54,6 +55,7 @@ parseLbl <- function(x) {
   
   while (i < nlines) {
     # If subcase
+    
     if (grepl(strobj, curline)) {
       
       # Getting the corresponding END_OBJECT length
@@ -65,7 +67,7 @@ parseLbl <- function(x) {
       }
       
       # Adding subelement 
-      lbls[[length(lbls)+1]] <- parseLbl(x[(i+1):(i2-1)])
+      lbls[[length(lbls)+1]] <- parseLbl(x[(i+1):(i2)])
       names(lbls)[[length(lbls)]] <- .parseLine(x[i])[[1]]
       
       i <- i2 + 1
@@ -73,29 +75,27 @@ parseLbl <- function(x) {
       
       next
     } # If its a continuation of the previous line
-    else if (!grepl(fulline, curline) & nchar(curline) > 0) {
-      
-      # Loop while not finding a new label
-      while (!grepl(fulline, curline) & i < nlines) {
-        
-        lbls[length(lbls)] <- paste(lbls[length(lbls)], .trimString(curline))
-        i <- i + 1
-        curline <- x[i]
-      }
-      
-      # Remove border quotes
-      lbls[length(lbls)] <- .rmQuotes(.trimString(lbls[length(lbls)]))
-      next
-    }
+    #else if (!grepl(fulline, curline) & nchar(curline) > 0) {
+    
+    #  # Loop while not finding a new label
+    #  while (!grepl(fulline, curline) & i < nlines) {
+    #    lbls[length(lbls)] <- paste(lbls[length(lbls)], .trimString(curline))
+    #    i <- i + 1
+    #    curline <- x[i]
+    #  }
+    #  
+    #  # Remove border quotes
+    #  lbls[length(lbls)] <- .rmQuotes(.trimString(lbls[length(lbls)]))
+    #  next
+    #}
     
     # Normal case
     else {
       lbls <- c(lbls, .parseLine(curline))
+      # Next
+      i <- i + 1
+      curline <- x[i]
     }
-    
-    # Next
-    i <- i + 1
-    curline <- x[i]
   }
   return(lbls)
 }
@@ -118,14 +118,19 @@ getColnames <- function(x) {
       # Building list 
       cols <- tabs[[i]][grepl("^COLUMN$", names(tabs[[i]]))]
       suboutput <- NULL
+      
       for (j in 1:length(cols)) {
         # Adding colname to list
-        if (j==1) suboutput <- cbind(
-          NAME=cols[[j]][["NAME"]],
-          DESCRIPTION=cols[[j]][["DESCRIPTION"]],
-          DATA_TYPE=cols[[j]][["DATA_TYPE"]],
-          FORMAT=cols[[j]][["FORMAT"]]
-        )
+        if (j==1) {
+          suboutput <- cbind(
+            NAME=cols[[j]][["NAME"]],
+            DESCRIPTION=cols[[j]][["DESCRIPTION"]],
+            DATA_TYPE=cols[[j]][["DATA_TYPE"]],
+            FORMAT=cols[[j]][["FORMAT"]],
+            START_BYTE=cols[[j]][["START_BYTE"]],
+            BYTES=cols[[j]][["BYTES"]]
+          )
+        }
         else {
           suboutput <- rbind(
             suboutput, 
@@ -133,10 +138,12 @@ getColnames <- function(x) {
               NAME=cols[[j]][["NAME"]],
               DESCRIPTION=cols[[j]][["DESCRIPTION"]],
               DATA_TYPE=cols[[j]][["DATA_TYPE"]],
-              FORMAT=cols[[j]][["FORMAT"]]
+              FORMAT=cols[[j]][["FORMAT"]],
+              START_BYTE=cols[[j]][["START_BYTE"]],
+              BYTES=cols[[j]][["BYTES"]]
               )
             )
-        }
+        }        
       }
       # Adding table colnames to table list
       output[[length(output) + 1]] <- as.data.frame(suboutput)
@@ -152,3 +159,6 @@ getColnames <- function(x) {
     return(NULL)
   }
 }
+
+x <- parseLbl(readLines("a17_traverse_gravity_data.lbl"))
+x <- getColnames(x)

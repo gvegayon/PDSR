@@ -1,4 +1,4 @@
-plot.PDS <- function(x, variables = sample(names(object$table), size = min(c(4,ncol(object$table)))), 
+plot.PDS <- function(x, variables = sample(names(x$table), size = min(c(4,ncol(x$table)))), 
                      type = c("ggpairs", "plotmatrix", "time"), ...) {
   
   table <- x$table
