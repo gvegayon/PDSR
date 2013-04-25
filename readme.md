@@ -7,11 +7,11 @@ This package was designed during the 2013 version of the NASA's
 International SpaceApps Challenge
 
 Please visit the project home for more information:
-https://github.org/gvegayon/PDSR.
+https://github.com/gvegayon/PDSR.
 
 or its SpaceApps repo
 
-https://github.org/spaceappcl/team20.
+https://github.com/spaceappcl/team20.
 
 ### Details
 The package retrieve data sets from 
